@@ -1,0 +1,24 @@
+[project]
+name = "proyecto-prueba"
+version = "0.0.0"
+description = "Un proyecto básico"
+authors = [
+    {name = "izainea",email = "cizaineam@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = "3.11.*"
+dependencies = [
+    "seaborn (>=0.13.2,<0.14.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "scikit-learn (>=1.6.1,<2.0.0)",
+    "fastapi (>=0.115.8,<0.116.0)",
+    "uvicorn (>=0.34.0,<0.35.0)",
+    "ucimlrepo (>=0.0.7,<0.0.8)",
+    "streamlit (>=1.42.0,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
