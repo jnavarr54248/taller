@@ -1,7 +1,7 @@
 # Usar una imagen ligera de Python 3.11
 FROM python:3.11-slim
 
-# Establecer el directorio de trabajo dentro del contenedor en /app
+# Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
 # Instalar Poetry
@@ -16,17 +16,17 @@ RUN poetry config virtualenvs.create false
 # Copiar solo los archivos necesarios para instalar dependencias
 COPY pyproject.toml poetry.lock ./
 
-# Instalar dependencias del proyecto sin instalar el paquete raíz
-RUN poetry install --no-root --no-interaction --no-ansi
+# Instalar dependencias del proyecto
+RUN poetry install --no-interaction --no-ansi --no-root
 
 # Copiar el resto del código fuente dentro de /app
 COPY . .
 
-# Asegurar permisos adecuados (opcional)
+# Asegurar permisos adecuados
 RUN chmod -R 755 /app
 
 # Exponer el puerto en el que correrá la API
 EXPOSE 8000
 
-# Comando para ejecutar la API en la carpeta /app
+# Comando para ejecutar la API
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

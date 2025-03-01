@@ -16,17 +16,17 @@ RUN poetry config virtualenvs.create false
 # Copiar solo los archivos necesarios para instalar dependencias
 COPY pyproject.toml poetry.lock ./
 
-# Instalar dependencias del proyecto sin instalar el paquete raíz
-RUN poetry install --no-root --no-interaction --no-ansi
+# Instalar dependencias del proyecto
+RUN poetry install --no-interaction --no-ansi --no-root
 
-# Copiar el resto del código fuente
+# Copiar el resto del código fuente dentro de /api
 COPY . .
 
-# Asegurar que los permisos sean correctos (opcional)
+# Asegurar permisos adecuados
 RUN chmod -R 755 /api
 
 # Exponer el puerto en el que correrá la API
 EXPOSE 8000
 
-# Comando para ejecutar la API con Uvicorn
+# Comando para ejecutar la API
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
